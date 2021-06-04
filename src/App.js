@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import { AuthProvider } from './components/auth/auth';

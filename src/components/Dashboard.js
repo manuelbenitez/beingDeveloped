@@ -207,7 +207,7 @@ const Dashboard = (props) => {
                 </Grid>
                 <Grid item xs={9} className='component-grid'>
                     <div>
-                        {componentToRender === 'About' ? <About /> : <Fragment> <ImageGrid folder={componentToRender + '/'} setSelectedImage={setSelectedImage} /> {selectedImage && <Modal selectedImage={selectedImage} setSelectedImage={setSelectedImage} currentAlbum={componentToRender + '/'} />} {firebase.auth().currentUser && <UploadForm folder={componentToRender + '/'} />}</Fragment>}
+                        {componentToRender === 'About' ? <About /> : <Fragment> {firebase.auth().currentUser && <UploadForm folder={componentToRender + '/'} />} <ImageGrid folder={componentToRender + '/'} setSelectedImage={setSelectedImage} /> {selectedImage && <Modal selectedImage={selectedImage} setSelectedImage={setSelectedImage} currentAlbum={componentToRender + '/'} />} </Fragment>}
                     </div>
                 </Grid>
             </Grid>
