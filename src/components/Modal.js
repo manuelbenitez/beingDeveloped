@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { Button, Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions } from '@material-ui/core'
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-
 import { firebase } from '../firebase/config'
 
 import useFirestore from '../hooks/useFirestore'
@@ -49,8 +48,7 @@ const Modal = ({ selectedImage, setSelectedImage, currentAlbum }) => {
         const { direction, clickFunction } = props
         const icon = direction === 'left' ? <ArrowBackIosIcon /> : <ArrowForwardIosIcon />
 
-        return <button className='arrow-button' onClick={clickFunction}
-        >{icon}</button>
+        return <button className='arrow-button' onClick={clickFunction}>{icon}</button>
     }
 
     const [index, setIndex] = useState(0)
@@ -82,7 +80,6 @@ const Modal = ({ selectedImage, setSelectedImage, currentAlbum }) => {
         setSelectedImage(docs[newIndex].url)
     }
 
-
     return (
         <div className='backdrop'
             onClick={handleClick}
@@ -102,6 +99,7 @@ const Modal = ({ selectedImage, setSelectedImage, currentAlbum }) => {
             </Dialog>
 
 
+
             <motion.img
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -115,6 +113,7 @@ const Modal = ({ selectedImage, setSelectedImage, currentAlbum }) => {
                 direction='right'
                 clickFunction={() => onArrowClick('right')}
             />
+
         </div>
     )
 }

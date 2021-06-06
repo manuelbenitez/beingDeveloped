@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Fragment } from 'react';
 
 
-import { Grid, Typography, List, ListItem, ListItemText, Button, IconButton, Input, Dialog, DialogTitle, DialogContentText, DialogContent, DialogActions, Menu, MenuItem } from '@material-ui/core'
+import { Grid, Typography, List, ListItem, ListItemText, Button, IconButton, Divider, Input, Dialog, DialogTitle, DialogContentText, DialogContent, DialogActions, Menu, MenuItem } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import ListIcon from '@material-ui/icons/List';
@@ -132,7 +132,11 @@ const Dashboard = (props) => {
 
     return (
         <Fragment>
+
+
             <button className='dropdown-button' aria-controls='simple-menu' aria-haspopup='true' onClick={handleClick}><ListIcon /></button>
+
+
             <Menu className='dropdown-menu'
                 id='simple-menu'
                 anchorEl={anchorEl}
@@ -147,22 +151,33 @@ const Dashboard = (props) => {
                 ))}
                 <MenuItem button onClick={() => setComponentToRender('About')}>About</MenuItem>
             </Menu>
+
+
             <Grid container direciton='row' className='grid'>
+
                 <motion.img src={logo} alt='asd' className='logo-mobile'
 
                     initial={{ scale: 0, y: 600 }}
                     animate={{ scale: 1, y: 0 }}
 
                 ></motion.img>
+
+
                 <Grid item xs={2} className='drawer-grid'>
+
                     <div className='drawer'>
+
                         <motion.img src={logo} alt='asd' className='logo'
 
                             initial={{ scale: 0, y: 600 }}
                             animate={{ scale: 1, y: 0 }}
 
                         ></motion.img>
+
+                        <Divider style={{ width: '80%', marginLeft: '10%' }} />
+
                         <List>
+
                             {firebase.auth().currentUser && <Fragment><Button style={{ fontSize: '1.5vh', overflow: 'auto' }} onClick={() => logout()}>Logout</Button></Fragment>}
                             {albums.map((album) => (
                                 <Fragment key={album}>
@@ -184,6 +199,7 @@ const Dashboard = (props) => {
                                     {firebase.auth().currentUser && <IconButton onClick={() => setDialogOpen(album)}><DeleteOutlineIcon /></IconButton>}
                                 </Fragment>
                             ))}
+
                             <Dialog open={open}>
                                 <DialogContent>
                                     <DialogTitle>You are about to delete '{clickedAlbum}'</DialogTitle>
@@ -194,22 +210,35 @@ const Dashboard = (props) => {
                                     <Button onClick={() => setOpen(false)}>Cancel</Button>
                                 </DialogActions>
                             </Dialog>
-                            <br />
-                            {firebase.auth().currentUser && <Fragment><Input value={newAlbum} onChange={e => setNewAlbum(e.target.value)}></Input><IconButton onClick={() => addAlbum()}><AddIcon /></IconButton></Fragment>}
 
+                            <br />
+
+                            {firebase.auth().currentUser && <Fragment><Input value={newAlbum} onChange={e => setNewAlbum(e.target.value)}></Input><IconButton onClick={() => addAlbum()}><AddIcon /></IconButton></Fragment>}
+                           
+                            <Divider style={{ width: '80%', marginLeft: '10%', marginBottom: '1vh' }} />
+                           
                             <ListItem button onClick={() => setComponentToRender('About')}>
                                 <ListItemText>
-                                    <Typography style={{ fontSize: '2vh', overflow: 'hidden', fontFamily: 'Cairo', fontWeight: '600' }}>About</Typography>
+                                    <Typography style={{ fontSize: '1.5vh', overflow: 'hidden', fontFamily: 'Cairo', fontWeight: '600', marginTop: '1vh' }}>About</Typography>
                                 </ListItemText>
                             </ListItem>
+
                         </List>
+
                     </div>
+
                 </Grid>
+
                 <Grid item xs={9} className='component-grid'>
+
                     <div>
+
                         {componentToRender === 'About' ? <About /> : <Fragment> {firebase.auth().currentUser && <UploadForm folder={componentToRender + '/'} />} <ImageGrid folder={componentToRender + '/'} setSelectedImage={setSelectedImage} /> {selectedImage && <Modal selectedImage={selectedImage} setSelectedImage={setSelectedImage} currentAlbum={componentToRender + '/'} />} </Fragment>}
+                   
                     </div>
+                
                 </Grid>
+            
             </Grid>
         </Fragment>
     )
