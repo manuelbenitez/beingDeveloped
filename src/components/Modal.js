@@ -85,7 +85,7 @@ const Modal = ({ selectedImage, setSelectedImage, currentAlbum }) => {
             onClick={handleClick}
         >
 
-            {firebase.auth().currentUser && <Button style={{ display: 'flex', marginLeft: '50%' }} onClick={() => setOpen(true)}>Delete</Button>}
+            {firebase.auth().currentUser && <Button style={{ display: 'flex', marginLeft: '48%', color: 'white' }} onClick={() => setOpen(true)}>Delete</Button>}
 
             <Dialog open={open}>
                 <DialogContent>

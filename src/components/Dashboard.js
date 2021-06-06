@@ -133,34 +133,36 @@ const Dashboard = (props) => {
     return (
         <Fragment>
 
+            <div className='mobile-grid'>
+                <div className='mobile-grid-btn'>
+                    <button className='dropdown-button' aria-controls='simple-menu' aria-haspopup='true' onClick={handleClick}><ListIcon style={{fontSize: '7vh'}} /></button>
+                    <Menu className='dropdown-menu'
+                        id='simple-menu'
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        {albums.map((album) => (
+                            <MenuItem key={album} button onClick={() => handleAlbumClick(album)} style={{background: '#f7f5ec'}} dense>
+                                {album}
+                            </MenuItem>
+                        ))}
+                        <MenuItem button onClick={() => setComponentToRender('About')} style={{background: '#f7f5ec'}}>About</MenuItem>
+                    </Menu>
+                </div>
 
-            <button className='dropdown-button' aria-controls='simple-menu' aria-haspopup='true' onClick={handleClick}><ListIcon /></button>
+                <div className='mobile-grid-logo'>
+                    <motion.img src={logo} alt='asd' className='logo-mobile'
 
+                        initial={{ scale: 0, y: 600 }}
+                        animate={{ scale: 1, y: 0 }}
 
-            <Menu className='dropdown-menu'
-                id='simple-menu'
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                {albums.map((album) => (
-                    <MenuItem key={album} button onClick={() => handleAlbumClick(album)}>
-                        {album}
-                    </MenuItem>
-                ))}
-                <MenuItem button onClick={() => setComponentToRender('About')}>About</MenuItem>
-            </Menu>
-
+                    ></motion.img>
+                </div>
+            </div>
 
             <Grid container direciton='row' className='grid'>
-
-                <motion.img src={logo} alt='asd' className='logo-mobile'
-
-                    initial={{ scale: 0, y: 600 }}
-                    animate={{ scale: 1, y: 0 }}
-
-                ></motion.img>
 
 
                 <Grid item xs={2} className='drawer-grid'>
@@ -214,9 +216,9 @@ const Dashboard = (props) => {
                             <br />
 
                             {firebase.auth().currentUser && <Fragment><Input value={newAlbum} onChange={e => setNewAlbum(e.target.value)}></Input><IconButton onClick={() => addAlbum()}><AddIcon /></IconButton></Fragment>}
-                           
+
                             <Divider style={{ width: '80%', marginLeft: '10%', marginBottom: '1vh' }} />
-                           
+
                             <ListItem button onClick={() => setComponentToRender('About')}>
                                 <ListItemText>
                                     <Typography style={{ fontSize: '1.5vh', overflow: 'hidden', fontFamily: 'Cairo', fontWeight: '600', marginTop: '1vh' }}>About</Typography>
@@ -234,11 +236,11 @@ const Dashboard = (props) => {
                     <div>
 
                         {componentToRender === 'About' ? <About /> : <Fragment> {firebase.auth().currentUser && <UploadForm folder={componentToRender + '/'} />} <ImageGrid folder={componentToRender + '/'} setSelectedImage={setSelectedImage} /> {selectedImage && <Modal selectedImage={selectedImage} setSelectedImage={setSelectedImage} currentAlbum={componentToRender + '/'} />} </Fragment>}
-                   
+
                     </div>
-                
+
                 </Grid>
-            
+
             </Grid>
         </Fragment>
     )
