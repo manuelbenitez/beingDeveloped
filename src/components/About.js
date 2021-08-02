@@ -9,12 +9,12 @@ import loggedExample1 from '../logged-example-1.png'
 const About = () => {
     return (
         <div>
-            <div className='intro'>
+            {/* <div className='intro'>
                 <h1>Welcome my analog pictures collection</h1>
                 <h2>None of the pictures on this website are edited, as they were taken they were developed.</h2>
                 <h2>Nothing else to say about it so I want to thank you for taking the time to pass by and I hope you enjoyed it!</h2>
                 <h2>Now if you are interested in how this website was built, all the information is below.</h2>
-
+                <br/>
             </div>
             <Divider style={{marginLeft: '25%', marginRight: '25%'}}></Divider>
             <div className='intro'>
@@ -35,8 +35,8 @@ const About = () => {
 
                 <h2>You can find the template of this website on my Github <a href='https://github.com/manuelbenitez/beingDeveloped'>page</a></h2>
                 <h2>Please feel free to steal the code and contact me if you have any questions or want a similar website coded for yourself to manu.benitez1@hotmail.com</h2>
-                <br />
-            </div>
+                <br /> */}
+            {/* </div> */}
         </div>
     )
 }

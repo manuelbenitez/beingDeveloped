@@ -13,24 +13,20 @@ body {
 
 .img-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-gap: 30px;
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
 
-.grid {
-  background: #e6e6e6;
-  min-height: 100vh;
-}
 
 .img-wrap {
   overflow: hidden;
   height: 0;
-  padding: 50% 0;
+  padding: 50% 50%;
   position: relative;
   opacity: 0.8;
-  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 .img-wrap img {
@@ -53,10 +49,10 @@ body {
 }
 
 .backdrop img {
-  display: flex;
+  display: grid;
   max-width: 100%;
   max-height: 80vh;
-  margin: 5vh auto;
+  margin: 3vh auto;
   box-shadow: 30px 50px 70px rgba(0, 0, 0, 0.5);
   border: 3px solid white;
 }
@@ -64,18 +60,29 @@ body {
 .arrow-button {
   background: #cabebe00;
   color: white;
-  margin-left: 32%;
-  font-size: 5vh;
-  border: none;
+  margin-left: 30%;
+  margin-bottom: 5vh;
+  border: 3px solid transparent;
+  border-radius: 50px;
+}
+.album-span {
+  font-size: 1.5vh;
+  padding: 0.2vh; 
 }
 
-.album-span {
-  overflow: hidden;
-  font-size: 1.5vh;
+.album-wrap{
+  align-items: flex-start;
+  color: rgba(51, 0, 51, 0.726);
+}
+.album-wrap:hover{
+  background: #cccac685;
+  border-radius: 50px;
+  color: rgba(194, 159, 123, 0.801);
+  padding-left: 3vh;
 }
 
 .drawer {
-  background: #ffffffab;
+  background: inherit;
   border-radius: 5px;
   flex-shrink: 0;
   z-index: 0;
@@ -83,17 +90,15 @@ body {
   min-width: 80%;
   max-width: 10%;
   position: static;
-  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.5);
 }
 
 .dropdown-button {
   display: none;
 }
-
 .logo {
   width: 100%;
   margin: 1vh auto;
-  margin-left: 0.2vh;
+  margin-left: 3vh;
 }
 
 .logo-mobile {
@@ -102,11 +107,11 @@ body {
 
 .intro {
   background: rgba(255, 255, 255, 0.664);
-  border: 4px;
-  border-radius: 10px;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
-  margin: 5vh auto;
+  border-radius: 50px;
+  box-shadow: 40px 33px 50px rgba(0, 0, 0, 0.5);
+  margin: 10vh ;
   text-align: center;
+  font-size: 1vh;
 }
 
 .logo-firebase {
@@ -136,24 +141,26 @@ body {
 
 @media (max-width: 600px) {
   .img-grid {
-    margin-left: 12vh;
     display: grid;
     grid-template-columns: 1fr;
+    grid-gap: 50px;
   }
+  .img-wrap {
+    margin-left: 4em;
+  }
+
 
   .backdrop img {
     display: block;
     max-width: 80%;
     max-height: 100%;
-    margin: 60px auto;
+    margin: 6vh auto;
     box-shadow: 30px 50px 70px rgba(0, 0, 0, 0.712);
     border: 3px solid white;
   }
 
   .arrow-button {
-    padding: 1.5vh;
-    margin-top: 5%;
-    margin-left: 25%;
+    margin-left: 15vh;
   }
 
   .drawer-grid {
@@ -170,10 +177,6 @@ body {
     color: rgba(0, 0, 0, 0.651);
   }
 
-  .dropdown-menu {
-    width: 50%;
-    height: 100%;
-  }
 
   .logo-mobile {
     display: flex;
@@ -184,7 +187,7 @@ body {
   .mobile-grid {
     display: grid;
     grid-column-gap: 1vh;
-    background: #e6e6e6;
+    background: inherit;
   }
 
   .mobile-grid-btn {

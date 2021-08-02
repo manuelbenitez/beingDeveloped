@@ -5,6 +5,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { firebase } from '../firebase/config'
 
+
 import useFirestore from '../hooks/useFirestore'
 
 import { motion } from 'framer-motion'
@@ -46,9 +47,12 @@ const Modal = ({ selectedImage, setSelectedImage, currentAlbum }) => {
 
     function Arrow(props) {
         const { direction, clickFunction } = props
-        const icon = direction === 'left' ? <ArrowBackIosIcon /> : <ArrowForwardIosIcon />
+        const icon = direction === 'left' ? <ArrowBackIosIcon style={{ fontSize: '5vh', padding: '1vh auto' }} /> : <ArrowForwardIosIcon style={{ fontSize: '5vh' }} />
 
-        return <button className='arrow-button' onClick={clickFunction}>{icon}</button>
+        return <motion.button
+            whileHover={{ scale: 1.3 }}
+            whileTap={{ scale: 1.4 }}
+            className='arrow-button' onClick={clickFunction}>{icon}</motion.button>
     }
 
     const [index, setIndex] = useState(0)
@@ -71,6 +75,7 @@ const Modal = ({ selectedImage, setSelectedImage, currentAlbum }) => {
     }
 
 
+
     const numSlides = docs.length
 
     const onArrowClick = (direction) => {
@@ -80,12 +85,16 @@ const Modal = ({ selectedImage, setSelectedImage, currentAlbum }) => {
         setSelectedImage(docs[newIndex].url)
     }
 
+
+    // SwiperElement
+
+
     return (
         <div className='backdrop'
             onClick={handleClick}
         >
 
-            {firebase.auth().currentUser && <Button style={{ display: 'flex', marginLeft: '48%', color: 'white' }} onClick={() => setOpen(true)}>Delete</Button>}
+            {firebase.auth().currentUser && <Button style={{ display: 'flex', top: 20 ,right: 20, position: 'absolute', color: 'white' }} onClick={() => setOpen(true)}>Delete</Button>}
 
             <Dialog open={open}>
                 <DialogContent>
@@ -98,21 +107,24 @@ const Modal = ({ selectedImage, setSelectedImage, currentAlbum }) => {
                 </DialogActions>
             </Dialog>
 
-
-
             <motion.img
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2, times: [1] }}
+                whileHover={{ scale: 1.02 }}
                 src={selectedImage} alt='enlarged pic' />
-            <Arrow
-                direction='left'
-                clickFunction={() => onArrowClick('left')}
-            />
-            <Arrow
-                direction='right'
-                clickFunction={() => onArrowClick('right')}
-            />
+
+            <div style={{ display: 'flex' }}>
+                <Arrow
+                    direction='left'
+                    clickFunction={() => onArrowClick('left')}
+                />
+                <Arrow
+                    direction='right'
+                    clickFunction={() => onArrowClick('right')}
+                />
+            </div>
+
 
         </div>
     )
