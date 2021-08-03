@@ -7,6 +7,7 @@ const UploadForm = (props) => {
     const [file, setFile] = useState(null)
     const [error, setError] = useState(null)
     const [folder, setFolder] = useState(null)
+    const [caption, setCaption] = useState(null)
 
     const types = ['image/png', 'image/jpeg', 'image/JPG']
 
@@ -23,15 +24,14 @@ const UploadForm = (props) => {
             setError('Please select an image file (png o jpeg)')
         }
     }
-
-
-    return (
+     return (
         <form>
             <input type='file' onChange={changeHandler}></input>
+            <input type='text' onChange={(e) => setCaption(e.target.value)} placeholder='Caption'/>
             <div className='output'>
                 {error && <div className='error'>{error}</div>}
                 {file && <div className='file'>{file.name}</div>}
-                {file && <ProgressBar file={file} setFile={setFile} folder={folder} />}
+                {file && <ProgressBar file={file} setFile={setFile} folder={folder} caption={caption}/>}
             </div>
         </form>
     )

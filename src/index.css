@@ -11,153 +11,20 @@ body {
 
 /* image grid styles */
 
-.img-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; 
-  grid-gap: 30px;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-}
 
-
-.img-wrap {
-  overflow: hidden;
-  height: 0;
-  padding: 50% 50%;
-  position: relative;
-  opacity: 0.8;
-  box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.5);
-}
-
-.img-wrap img {
-  min-width: 100%;
-  min-height: 100%;
-  max-width: 150%;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: #111111d0;
-}
-
-.backdrop img {
-  display: grid;
-  max-width: 100%;
-  max-height: 80vh;
-  margin: 3vh auto;
-  box-shadow: 30px 50px 70px rgba(0, 0, 0, 0.5);
-  border: 3px solid white;
-}
-
-.arrow-button {
-  background: #cabebe00;
-  color: white;
-  margin-left: 30%;
-  margin-bottom: 5vh;
-  border: 3px solid transparent;
-  border-radius: 50px;
-}
-.album-span {
-  font-size: 1.5vh;
-  padding: 0.2vh; 
-}
-
-.album-wrap{
-  align-items: flex-start;
-  color: rgba(51, 0, 51, 0.726);
-}
-.album-wrap:hover{
-  background: #cccac685;
-  border-radius: 50px;
-  color: rgba(194, 159, 123, 0.801);
-  padding-left: 3vh;
-}
-
-.drawer {
-  background: inherit;
-  border-radius: 5px;
-  flex-shrink: 0;
-  z-index: 0;
-  min-height: 100%;
-  min-width: 80%;
-  max-width: 10%;
-  position: static;
-}
 
 .dropdown-button {
   display: none;
 }
-.logo {
-  width: 100%;
-  margin: 1vh auto;
-  margin-left: 3vh;
-}
-
 .logo-mobile {
   display: none;
-}
-
-.intro {
-  background: rgba(255, 255, 255, 0.664);
-  border-radius: 50px;
-  box-shadow: 40px 33px 50px rgba(0, 0, 0, 0.5);
-  margin: 10vh ;
-  text-align: center;
-  font-size: 1vh;
-}
-
-.logo-firebase {
-  max-height: 20vh;
-  margin-left: 5vh;
-  margin-right: 5vh;
-}
-
-.logo-react {
-  max-height: 20vh;
-  margin-left: 5vh;
-  margin-right: 5vh;
-}
-
-.logo-github {
-  max-height: 10vh;
-  margin-left: 5vh;
-  margin-right: 5vh;
-}
-
-.logged-example{
-  width: 80%;
-  margin-bottom: 2vh;
 }
 
 
 
 @media (max-width: 600px) {
-  .img-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 50px;
-  }
-  .img-wrap {
-    margin-left: 4em;
-  }
 
 
-  .backdrop img {
-    display: block;
-    max-width: 80%;
-    max-height: 100%;
-    margin: 6vh auto;
-    box-shadow: 30px 50px 70px rgba(0, 0, 0, 0.712);
-    border: 3px solid white;
-  }
 
   .arrow-button {
     margin-left: 15vh;
@@ -178,28 +45,7 @@ body {
   }
 
 
-  .logo-mobile {
-    display: flex;
-    max-width: 70%;
-    margin-left: 2vh;
-  }
 
-  .mobile-grid {
-    display: grid;
-    grid-column-gap: 1vh;
-    background: inherit;
-  }
-
-  .mobile-grid-btn {
-    grid-column-start: 1;
-    grid-column-end: 2;
-
-  }
-
-  .mobile-grid-logo {
-    grid-column-start: 2;
-    grid-column-end: 4;
-  }
 
   .intro {
     border: 4px;

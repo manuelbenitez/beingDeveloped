@@ -1,17 +1,22 @@
-import { makeStyles } from '@material-ui/styles'
+import { createMuiTheme } from "@material-ui/core";
 
-const useStyles = makeStyles(theme =>({
-
-    drawer: {
-        flexShrink: '0',
-        zIndex: '0',
-        background: 'rgba(255, 255, 255, 0.226)',
-        minHeight: '100%',
-        maxWidth: '15%',
-        position: 'fixed',
-
+export const theme = createMuiTheme({
+    typography: {
+      fontFamily: 'Aglet Sans, Haguro',
+      h1: {
+        fontFamily: 'Haguro',
+        fontSize: '38px',
+        lineHeight: '34px',
+        marginBlockStart: '-19px',
+      },
     },
-
-}))
-
-export default useStyles
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 800,
+            md: 960,
+            lg: 1280,
+            xl: 1920,
+        },
+    },
+  });

@@ -1,15 +1,50 @@
-import { Divider } from '@material-ui/core'
-import React from 'react'
-import logoReact from '../logo-react.png'
-import logoFirebase from '../logo-firebase.png'
-import logoGithub from '../logo-github.png'
-import loggedExample from '../logged-example.png'
-import loggedExample1 from '../logged-example-1.png'
+import React from "react";
+import { makeStyles } from "@material-ui/styles";
+// import { Divider } from '@material-ui/core'
+// import logoReact from '../logo-react.png'
+// import logoFirebase from '../logo-firebase.png'
+// import logoGithub from '../logo-github.png'
+// import loggedExample from '../logged-example.png'
+// import loggedExample1 from '../logged-example-1.png'
+
+const makeAboutStyles = makeStyles((theme) => ({
+  root: {},
+  intro: {
+    background: "rgba(255, 255, 255, 0.664)",
+    borderRadius: "50px",
+    boxShadow: "40px 33px 50px rgba(0, 0, 0, 0.5)",
+    margin: "10vh",
+    textAlign: "center",
+    fontSize: "1vh",
+  },
+  logoFirebase: {
+    maxHeight: "20vh",
+    marginLeft: "5vh",
+    marginRight: "5vh",
+  },
+
+  logoReact: {
+    maxHeight: "20vh",
+    marginLeft: "5vh",
+    marginRight: "5vh",
+  },
+
+  logoGithub: {
+    maxHeight: "10vh",
+    marginLeft: "5vh",
+    marginRight: "5vh",
+  },
+  loggedExample: {
+    width: "80%",
+    marginBottom: "2vh",
+  },
+}));
 
 const About = () => {
-    return (
-        <div>
-            {/* <div className='intro'>
+  const styles = makeAboutStyles();
+  return (
+    <div className={styles.root}>
+      {/* <div className='intro'>
                 <h1>Welcome my analog pictures collection</h1>
                 <h2>None of the pictures on this website are edited, as they were taken they were developed.</h2>
                 <h2>Nothing else to say about it so I want to thank you for taking the time to pass by and I hope you enjoyed it!</h2>
@@ -36,9 +71,9 @@ const About = () => {
                 <h2>You can find the template of this website on my Github <a href='https://github.com/manuelbenitez/beingDeveloped'>page</a></h2>
                 <h2>Please feel free to steal the code and contact me if you have any questions or want a similar website coded for yourself to manu.benitez1@hotmail.com</h2>
                 <br /> */}
-            {/* </div> */}
-        </div>
-    )
-}
+      {/* </div> */}
+    </div>
+  );
+};
 
-export default About
+export default About;
