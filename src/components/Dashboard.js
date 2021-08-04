@@ -3,9 +3,7 @@ import { Fragment } from "react";
 import { motion } from "framer-motion";
 
 import {
-  Grid,
-  List,
-  ListItem,
+  Box,
   Button,
   IconButton,
   Divider,
@@ -32,61 +30,45 @@ import logo from "../logo.png";
 import About from "./About";
 
 const makeDashboardStyles = makeStyles((theme) => ({
-  drawer: {
+  root: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  navbar: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
     background: "inherit",
-    borderRadius: "5px",
-    zIndex: 0,
-    width: "80%",
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
   },
-  albumWrap: {
-    color: "rgba(51, 0, 51, 0.726)",
-    "&:hover": {
-      background: "#cccac685",
-      borderRadius: "50px",
-      color: "rgba(194, 159, 123, 0.801)",
-      paddingLeft: theme.spacing(4),
-    },
-  },
-  album: {
-    fontSize: `${theme.spacing(0.12)}vw`,
-    padding: theme.spacing(0.5),
+  dropdownButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: "none",
+    background: "none",
+    color: "rgba(0, 0, 0, 0.651)",
   },
   logo: {
-    width: "100%",
+    width: "10%",
+    height: "10%",
+    marginRight: `${theme.spacing(5.2)}vw`,
+    flexShrink: 1,
     margin: theme.spacing(1),
   },
-
-  dropdownButton: {
-    display: "none",
-    [theme.breakpoints.down("sm")]: {
-      display: "flex",
-      maxHeight: "5vh",
-      marginTop: "2vh",
-      border: "none",
-      background: "none",
-      color: "rgba(0, 0, 0, 0.651)",
-    },
+  loggedInComponents: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingRight: theme.spacing(4),
+    paddingLeft: theme.spacing(4),
   },
-  logoMobile: {
-    display: "none",
-    [theme.breakpoints.down("sm")]: {
-      display: 'flex',
-      width: "20%",
-    },
+  imagesContainer: {
+    padding: theme.spacing(4),
   },
-  mobileGrid: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
 }));
 
 const Dashboard = (props) => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedImageCaption, setSelectedImageCaption] = useState(null)
+  const [selectedImageCaption, setSelectedImageCaption] = useState(null);
   const [albums, setAlbums] = useState([]);
   const [newAlbum, setNewAlbum] = useState("");
   const [componentToRender, setComponentToRender] =
@@ -95,7 +77,6 @@ const Dashboard = (props) => {
   const [open, setOpen] = useState(false);
   const styles = makeDashboardStyles();
 
-  console.log(selectedImageCaption)
   const getAlbums = async () => {
     try {
       await firebase
@@ -199,31 +180,40 @@ const Dashboard = (props) => {
   };
 
   return (
-    <Fragment>
-      {/* 
-            
-                Mobile display menu
+    <Box className={styles.root}>
+      <div className={styles.navbar}>
+        <motion.img
+          src={logo}
+          alt=""
+          className={styles.logo}
+          initial={{ scale: 0, y: 600 }}
+          animate={{ scale: 1, y: 0 }}
+          whileHover={{ scale: 1.1 }}
+        ></motion.img>
 
-             */}
-      <div className={styles.mobileGrid}>
-        <div className="mobile-grid-btn">
+        <Box>
           <motion.button
             className={styles.dropdownButton}
             whileTap={{ scale: 1.4 }}
             onClick={handleClick}
           >
-            <ListIcon style={{ fontSize: "7vh" }} />
+            <ListIcon />
           </motion.button>
+        </Box>
 
-          <Menu
-            className="dropdown-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            style={{ padding: "1vh", background: "rgba(0, 0, 0, 0.712)" }}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            {albums.map((album) => (
+        <Menu
+          anchorEl={anchorEl}
+          keepMounted
+          style={{
+            padding: "1vh",
+            background: "rgba(0, 0, 0, 0.712)",
+            display: "flex",
+          }}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          {albums.map((album) => (
+            <>
               <MenuItem
                 key={album}
                 button
@@ -237,197 +227,95 @@ const Dashboard = (props) => {
               >
                 {album}
               </MenuItem>
-            ))}
-            <Divider></Divider>
-            <MenuItem
-              button
-              onClick={() => setComponentToRender("About")}
-              style={{
-                background: "inherit",
-                margin: "0.2em",
-                borderRadius: "50px",
-                color: "rgba(51, 0, 51, 0.726)",
-              }}
-            >
-              About
-            </MenuItem>
-          </Menu>
-        </div>
-
-        <div>
-          <motion.img
-            src={logo}
-            alt=""
-            className={styles.logoMobile}
-            initial={{ scale: 0, y: 600 }}
-            animate={{ scale: 1, y: 0 }}
-          ></motion.img>
-        </div>
-      </div>
-      {/*
-            
-            
-            
-                s Desktop display menu
-            
-            
-            
-             */}
-      <Grid container direciton="row">
-        <Grid item xs={2}>
-          <div className={styles.drawer}>
-            <motion.img
-              src={logo}
-              alt="asd"
-              className={styles.logo}
-              initial={{ scale: 0, y: 600 }}
-              animate={{ scale: 1, y: 0 }}
-              whileHover={{ scale: 1.1 }}
-            ></motion.img>
-
-            <Divider
-              style={{
-                width: "80%",
-                marginLeft: "20%",
-                marginBottom: "1vh",
-                borderRadius: "50px",
-                border: "1px solid rgba(99, 99, 99, 0.418)",
-                color: "rgba(99, 99, 99, 0.418)",
-              }}
-            />
-
-            <List>
-              {/* Logout Button */}
-              {firebase.auth().currentUser && (
-                <Fragment>
-                  <Button
-                    style={{ fontSize: "1.5vh", overflow: "auto" }}
-                    onClick={() => logout()}
-                  >
-                    Logout
-                  </Button>
-                </Fragment>
-              )}
-
-              {/* Albums lists */}
-              {albums.map((album) => (
-                <Fragment key={album}>
-                  <ListItem
-                    key={album}
-                    onClick={() => setComponentToRender(album)}
-                    className={styles.albumWrap}
-                  >
-                    <motion.a
-                      className={styles.album}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 200,
-                        damping: 10,
-                      }}
-                    >
-                      {album}
-                    </motion.a>
-                  </ListItem>
-                  {firebase.auth().currentUser && (
-                    <IconButton onClick={() => setDialogOpen(album)}>
-                      <DeleteOutlineIcon />
-                    </IconButton>
-                  )}
-                </Fragment>
-              ))}
-
-              <Dialog open={open}>
-                <DialogContent>
-                  <DialogTitle>
-                    You are about to delete '{clickedAlbum}'
-                  </DialogTitle>
-                  <DialogContentText>
-                    Are you sure you want to delete this album?
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={() => handleDelete(clickedAlbum)}>
-                    Yes
-                  </Button>
-                  <Button onClick={() => setOpen(false)}>Cancel</Button>
-                </DialogActions>
-              </Dialog>
-
-              <br />
-
-              {firebase.auth().currentUser && (
-                <>
-                  <Input
-                    value={newAlbum}
-                    onChange={(e) => setNewAlbum(e.target.value)}
-                  ></Input>
-                  <IconButton onClick={() => addAlbum()}>
-                    <AddIcon />
+              <MenuItem>
+                {firebase.auth().currentUser && (
+                  <IconButton onClick={() => setDialogOpen(album)}>
+                    <DeleteOutlineIcon />
                   </IconButton>
-                </>
-              )}
+                )}
+              </MenuItem>
+            </>
+          ))}
+          <Divider></Divider>
+          <MenuItem
+            button
+            onClick={() => setComponentToRender("About")}
+            style={{
+              background: "inherit",
+              margin: "0.2em",
+              borderRadius: "50px",
+              color: "rgba(51, 0, 51, 0.726)",
+            }}
+          >
+            About
+          </MenuItem>
+        </Menu>
 
-              <Divider
-                style={{
-                  width: "80%",
-                  marginLeft: "20%",
-                  marginBottom: "1vh",
-                  borderRadius: "50px",
-                  border: "1px solid rrgba(99, 99, 99, 0.418)",
-                  background: "rgba(99, 99, 99, 0.418)",
-                }}
-              />
+        <Dialog open={open}>
+          <DialogContent>
+            <DialogTitle>You are about to delete '{clickedAlbum}'</DialogTitle>
+            <DialogContentText>
+              Are you sure you want to delete this album?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => handleDelete(clickedAlbum)}>Yes</Button>
+            <Button onClick={() => setOpen(false)}>Cancel</Button>
+          </DialogActions>
+        </Dialog>
 
-              <ListItem
-                button
-                onClick={() => setComponentToRender("About")}
-                className={styles.albumWrap}
-              >
-                <motion.a
-                  className={styles.album}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 10,
-                  }}
-                >
-                  About
-                </motion.a>
-              </ListItem>
-            </List>
-          </div>
-        </Grid>
-
-        <Grid item xs={9}>
-          {componentToRender === "About" ? (
-            <About />
-          ) : (
-            <Fragment>
-              {firebase.auth().currentUser && (
-                <UploadForm folder={componentToRender + "/"} />
-              )}
-              <ImageGrid
-                folder={componentToRender + "/"}
-                setSelectedImageCaption={setSelectedImageCaption}
+        <br />
+      </div>
+      <Box className={styles.loggedInComponents}>
+        {/* Logout Button */}
+        {firebase.auth().currentUser && (
+          <Fragment>
+            <Button
+              style={{ fontSize: "1.5vh", overflow: "auto" }}
+              onClick={() => logout()}
+            >
+              Logout
+            </Button>
+          </Fragment>
+        )}
+        {firebase.auth().currentUser && (
+          <Box>
+            <Input
+              value={newAlbum}
+              onChange={(e) => setNewAlbum(e.target.value)}
+              placeholder="Add Ablums"
+            ></Input>
+            <IconButton onClick={() => addAlbum()}>
+              <AddIcon />
+            </IconButton>
+          </Box>
+        )}
+        {firebase.auth().currentUser && (
+          <UploadForm folder={componentToRender + "/"} />
+        )}
+      </Box>
+      <Box className={styles.imagesContainer}>
+        {componentToRender === "About" ? (
+          <About />
+        ) : (
+          <Fragment>
+            <ImageGrid
+              folder={componentToRender + "/"}
+              setSelectedImageCaption={setSelectedImageCaption}
+              setSelectedImage={setSelectedImage}
+            />
+            {selectedImage && (
+              <Modal
+                caption={selectedImageCaption}
+                selectedImage={selectedImage}
                 setSelectedImage={setSelectedImage}
+                currentAlbum={componentToRender + "/"}
               />
-              {selectedImage && (
-                <Modal
-                  caption={selectedImageCaption}
-                  selectedImage={selectedImage}
-                  setSelectedImage={setSelectedImage}
-                  currentAlbum={componentToRender + "/"}
-                />
-              )}
-            </Fragment>
-          )}
-        </Grid>
-      </Grid>
-    </Fragment>
+            )}
+          </Fragment>
+        )}
+      </Box>
+    </Box>
   );
 };
 
